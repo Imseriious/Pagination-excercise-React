@@ -20,12 +20,15 @@ const App = () => {
     fetchPosts();
   }, []); //Empty brakets after so it runs only when mount
 
-
+  //Get current posts
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   
   return (
     <div className="container mt-5">
       <h1 className="text-primaty-mb-3">My Blog</h1>
-      <Posts posts={posts} loading={loading} />
+      <Posts posts={currentPosts} loading={loading} />
     </div>
   );
 }
